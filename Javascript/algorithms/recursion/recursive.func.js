@@ -1,7 +1,7 @@
 // Recursion are process (function) that calls itself until a base case point
 
 const countDown = num => {
-  if (num <= 0) return 'All done';
+  if (num <= 0) return 0;
 
   console.log(num)
   num -= 1;
