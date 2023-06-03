@@ -5,18 +5,26 @@
 
 const Mathematics = {
   power: function (base, exp) {
-    const stop = [];
-
-    stop.length = exp;
-    
-    if (!stop.length) return;
-
-    if (exp > 0) return 1;
-
-    base *= base;
-    this.power(exp - 1);
-    return base;
+    if (exp === 0) return 1; 
+    console.log(base, exp)
+    return base *= this.power(base, exp - 1);
   }
 }
+console.log(Mathematics.power(2, 2));
 
-console.log(Mathematics.power(2, 2))
+const reverse = (str) => {
+  // add whatever parameters you deem necessary - good luck!
+  const arr = str.split('');
+  const result = [];
+  let i = arr.length;
+  const main = newArr => {
+    if (i <= 0) return;
+    result[i] = newArr.shift();
+    i--
+    main(newArr);
+    return newArr;
+  }
+  main(arr);
+  return result.join('');
+}
+console.log(reverse('awesome')) // 'emosewa'
