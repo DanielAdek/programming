@@ -1,3 +1,4 @@
+process.env.UV_THREADPOOL_SIZE = 1;
 const fs = require('fs');
 
 
@@ -41,3 +42,4 @@ fs.readFile(__dirname, 'utf-8', (err, content) => {
 fs.readFile(__dirname, 'utf-8', (err, content) => {
   console.log('10: ', Date.now() - start);
 });
+
