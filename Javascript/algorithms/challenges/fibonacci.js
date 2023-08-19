@@ -1,3 +1,5 @@
+const memoize = require("./memoization");
+
 const fibonacci = (n) => {
   const result = [0, 1];
 
@@ -16,7 +18,9 @@ console.log(fibonacci(5));
 
 const fibRecursively = (n) => {
   if (n < 2) return n;
-  return fibRecursively(n - 1) + fibRecursively(n - 2);
+  return fib(n - 1) + fib(n - 2);
 }
 
-console.log(fibRecursively(5))
+const fib = memoize(fibRecursively);
+
+console.log(fib(5))
