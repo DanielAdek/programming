@@ -46,4 +46,4 @@ const spiralMatrix = (n) => {
   return results;
 }
 
-console.log(spiralMatrix(5))
+console.log(spiralMatrix(5));
