@@ -9,6 +9,7 @@ class Node {
 class LinkedList {
   constructor() {
     this.head = null;
+    this.length = this.getSize();
   }
 
   insertFirst(data) {
@@ -105,6 +106,72 @@ class LinkedList {
       currentIndexNode = newNode;
     }
   }
+
+  removeNodeAt(index) {
+    // want to have a previous node to point to the next
+    // edge cases:
+        // if nothing is at the head return;
+        // if there is only one node present
+        // if number is greater than what we have in node
+        // when the first node is removed
+
+    if (!this.head) {
+      return;
+    }
+
+    if (index === 1) {
+      this.head = this.head.next;
+      return;
+    }
+
+    let previousNode = this.getNodeAt(index - 1);
+
+    if (!previousNode) previousNode = this.getNodeAt(index);
+
+    previousNode.next = previousNode.next.next;
+  }
+
+  splice(start, end) {
+    // edge cases:
+      // if head is null
+      // if start is more than our size
+      // if end is more than our size
+      // if start is the head
+    if (!this.head) return;
+
+    const size = this.getSize();
+
+    if (start > size) {
+      return;
+    }
+
+    if (start === 0) {
+      this.head = this.getNodeAt(end).next;
+      return;
+    }
+
+    let previousNode = this.getNodeAt(start);
+    if (previousNode)
+      previousNode.next = this.getNodeAt(end);
+  }
+
+  forEach(fn) {
+    let node = this.head;
+    let counter = 0;
+    while (node) {
+      fn(node, counter);
+      node = node.next;
+      counter++;
+    }
+  }
+
+  *[Symbol.iterator]() {
+    let node = this.head;
+    while (node) {
+      yield node;
+      node = node.next;
+    }
+  }
 }
 
 const myLinkedList = new LinkedList();
@@ -113,7 +180,21 @@ myLinkedList.insertFirst({username: "John"})
 myLinkedList.insertFirst({fullName: "John Smith"})
 myLinkedList.insertLast({age: 37});
 myLinkedList.insertNodeAt({a: 12}, 3);
+myLinkedList.removeNodeAt(2)
+
 // console.log(myLinkedList.getSize());
 // console.log(myLinkedList.getFirst())
 // console.log(myLinkedList.getLast());
 // console.log(myLinkedList.getNodeAt(2));
+
+// let i = 0;
+// for (const value of myLinkedList) {
+//   console.log(i, new Set(Object.keys(value.data)));
+//   i++
+// }
+
+for (const value of myLinkedList) {
+  console.log(value)
+}
+
+module.exports = myLinkedList;
