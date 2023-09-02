@@ -20,7 +20,7 @@ class ParkingLot {
         return true;
       }
     }
-    return false
+    return false;
   }
 
   getSlots() {
