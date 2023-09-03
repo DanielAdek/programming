@@ -28,4 +28,17 @@ const matrix = n => {
   return results;
 }
 
-console.log(matrix(6))
+
+const matrixGPT = (n) => {
+  const results = new Array(n);
+
+  for (let i = 0; i < n; i++) {
+    results[i] = new Array(n).fill(0);
+    results[i][i] = 1; // Set diagonal elements to 1
+  }
+
+  return results;
+};
+
+const done = matrix(5)
+console.log(done)
