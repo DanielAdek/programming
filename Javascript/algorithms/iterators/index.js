@@ -76,3 +76,10 @@ console.log([0, ...iterableRang])
 //   console.log(i)
 // }
 
+
+
+// Symbol
+
+let mySymbol = Symbol("This is a text");
+mySymbol = "The text has changed";
+console.log(mySymbol.description)
