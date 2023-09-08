@@ -73,3 +73,49 @@ console.log(result.next());
 //   console.log(value);
 // }
 
+
+const addNumber = function* (){
+  const result = 1 + 1;
+  return 20 + (yield result);
+}
+
+const generatorNumbers = addNumber();
+console.log(generatorNumbers.next())
+console.log(generatorNumbers.next(10))
+
+class Tree {
+  constructor(value = null, children = []) {
+    this.value = value;
+    this.children = children
+  }
+
+  *printValues () {
+    yield this.value;
+
+    for (const child of this.children){
+      yield* child.printValues();
+    }
+  }
+}
+
+const tree = new Tree(1, [
+  new Tree(2, [
+    new Tree(4, [
+      new Tree(5)
+    ])
+  ]),
+  new Tree(3, [
+    new Tree(6, [
+      new Tree(7)
+    ]),
+    new Tree(8, [
+      new Tree(9)
+    ])
+  ])
+]);
+
+const results = [];
+for (const value of tree.printValues()) {
+  results.push(value);
+}
+console.log(results)

@@ -21,4 +21,23 @@ const sorting = unsortedStr => {
   return arr.join('');
 }
 
-console.log(sorting('562135689907'))
+const sortByBubble = unsortedStr => {
+  const alphaString = unsortedStr.replace(/[^a-zA-Z0-9]+/g, '');
+  const arr = alphaString.split('');
+
+  for (let i = 0; i < alphaString.length; i++) {
+
+    for (let j = 0; j < arr.length - i; j++) {
+      if (arr[j] > arr[j + 1]) {
+        const lesser = arr[j + 1]; // get a reference to the lesser
+
+        // then swap
+        arr[j + 1] = arr[j];
+        arr[j] = lesser;
+      }
+    }
+  }
+  return arr.join('');
+}
+
+console.log(sortByBubble('562135689907'))

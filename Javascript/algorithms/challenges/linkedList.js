@@ -88,6 +88,18 @@ class LinkedList {
     return null;
   }
 
+  getMiddleNode() {
+    let counter1 = this.getFirst();
+    let counter2 = this.getFirst();
+
+    while (counter2.next?.next) {
+      counter1 = counter1.next;
+      counter2 = counter2.next.next;
+    }
+
+    return counter1;
+  }
+
   insertNodeAt(data, index) {
     const newNode = new Node(data, null);
     if (!this.head) {
@@ -181,11 +193,13 @@ myLinkedList.insertFirst({fullName: "John Smith"})
 myLinkedList.insertLast({age: 37});
 myLinkedList.insertNodeAt({a: 12}, 3);
 myLinkedList.removeNodeAt(2)
+const midNode = myLinkedList.getMiddleNode();
 
 // console.log(myLinkedList.getSize());
 // console.log(myLinkedList.getFirst())
 // console.log(myLinkedList.getLast());
 // console.log(myLinkedList.getNodeAt(2));
+console.log(midNode)
 
 // let i = 0;
 // for (const value of myLinkedList) {
@@ -193,8 +207,21 @@ myLinkedList.removeNodeAt(2)
 //   i++
 // }
 
-for (const value of myLinkedList) {
-  console.log(value)
+function fromLast(list, n) {
+  let slowRunner = list.getFirst();
+  let fastRunner = list.getFirst();
+
+  for (let i=0; i < n; i++) {
+    fastRunner = fastRunner.next;
+  }
+
+  while (fastRunner.next) {
+    slowRunner = slowRunner.next;
+    fastRunner = fastRunner.next;
+  }
+
+  return slowRunner;
 }
+console.log(fromLast(myLinkedList, 3))
 
 module.exports = myLinkedList;
