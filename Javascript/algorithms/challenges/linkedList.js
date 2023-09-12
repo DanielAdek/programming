@@ -9,7 +9,7 @@ class Node {
 class LinkedList {
   constructor() {
     this.head = null;
-    this.length = this.getSize();
+    // this.length = this.getSize();
   }
 
   insertFirst(data) {
@@ -143,28 +143,21 @@ class LinkedList {
     previousNode.next = previousNode.next.next;
   }
 
-  splice(start, end) {
+  splice(start, deleteCount) {
     // edge cases:
       // if head is null
       // if start is more than our size
       // if end is more than our size
       // if start is the head
+
     if (!this.head) return;
 
-    const size = this.getSize();
+    let startPointNode = this.getNodeAt(start - 1);
 
-    if (start > size) {
-      return;
-    }
+    if (!startPointNode)
+    let endpointNode = this.getNodeAt(start + deleteCount);
 
-    if (start === 0) {
-      this.head = this.getNodeAt(end).next;
-      return;
-    }
-
-    let previousNode = this.getNodeAt(start);
-    if (previousNode)
-      previousNode.next = this.getNodeAt(end);
+    startPointNode.next = endpointNode;
   }
 
   forEach(fn) {
@@ -188,18 +181,21 @@ class LinkedList {
 
 const myLinkedList = new LinkedList();
 myLinkedList.insertFirst({bio: "I love myself"});
-myLinkedList.insertFirst({username: "John"})
-myLinkedList.insertFirst({fullName: "John Smith"})
-myLinkedList.insertLast({age: 37});
+myLinkedList.insertLast({username: "John"})
+myLinkedList.insertLast({fullName: "John Smith"})
 myLinkedList.insertNodeAt({a: 12}, 3);
-myLinkedList.removeNodeAt(2)
+myLinkedList.insertLast({age: 37});
+// myLinkedList.removeNodeAt(2)
 const midNode = myLinkedList.getMiddleNode();
 
+myLinkedList.splice(1, 2)
+
+console.log(JSON.stringify(myLinkedList, null, 2))
 // console.log(myLinkedList.getSize());
 // console.log(myLinkedList.getFirst())
 // console.log(myLinkedList.getLast());
 // console.log(myLinkedList.getNodeAt(2));
-console.log(midNode)
+// console.log(midNode)
 
 // let i = 0;
 // for (const value of myLinkedList) {
@@ -222,6 +218,6 @@ function fromLast(list, n) {
 
   return slowRunner;
 }
-console.log(fromLast(myLinkedList, 3))
+// console.log(fromLast(myLinkedList, 3))
 
 module.exports = myLinkedList;
