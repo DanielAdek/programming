@@ -155,6 +155,8 @@ class LinkedList {
     let startPointNode = this.getNodeAt(start - 1);
 
     if (!startPointNode)
+      startPointNode = this.getNodeAt(start);
+
     let endpointNode = this.getNodeAt(start + deleteCount);
 
     startPointNode.next = endpointNode;

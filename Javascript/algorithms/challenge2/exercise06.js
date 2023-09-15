@@ -66,7 +66,7 @@ const sherlock = (string) => {
 
   const counts = [...charCount.values()];
 
-  // Create an object to count the frequency of frequencies
+  // Create an object.js to count the frequency of frequencies
   const freqCount = {};
 
   // Count the frequency of frequencies

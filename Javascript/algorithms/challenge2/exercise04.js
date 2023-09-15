@@ -29,7 +29,7 @@ Delete the following characters from the strings make them anagrams:
 */
 
 // SOLUTION BREAK DOWN
-// create two empty non-primitive object: charModeA and charModeB
+// create two empty non-primitive object.js: charModeA and charModeB
 // create a counter: this will hold the value of chars to delete
 // create a loop to make charModeA key-value pair with the first param: a
 // do the same with the second param: b

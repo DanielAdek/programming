@@ -113,6 +113,3 @@ class BinarySearchTreeNode {
     return null;
   }
 }
-
-
-console.log()
