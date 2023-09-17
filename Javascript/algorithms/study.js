@@ -9,53 +9,5 @@ console.log("PRE INCREMENT: ", preI)
 
 let iii = 0
 const compoundI = iii += 1;
-console.log("COMPOUND ASSIGNMENT: ", compoundI)
-
-
-const person = {
-  name: "",
-  age: 0,
-
-  set seAge(value) {
-    if (!value) {
-      return process.stdout.write("Invalid Input");
-    }
-    this.age = value;
-    return this;
-  },
-  set setName(value) {
-    if (!value) {
-      return process.stdout.write("Invalid Input");
-    }
-    this.name = value;
-    return this;
-  },
-
-  get getName() {
-    return this.name;
-  },
-
-  get getAge() {
-    return this.age;
-  }
-};
-
-
-
-const obj = { name: "John", deep: { q: "something"}, fu() { return "nice"}}
-const obj1 = JSON.parse(JSON.stringify(obj));
-const obj2 = Object.create(obj);
-const obj3 = obj
-
-const cpObjForIn = {}
-
-for (const key in obj) {
-  cpObjForIn[key] = obj[key];
-}
-
-obj2.deep.q = "pete";
-// obj2.name = "john"
-
-// console.log(Object.keys(obj));
-
+console.log("COMPOUND ASSIGNMENT: ", compoundI);
 

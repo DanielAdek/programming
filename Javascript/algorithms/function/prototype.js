@@ -15,11 +15,52 @@ Person.prototype.isHuman = function () {
 
 // Inheritance
 
-function Man (name) {
-  Person.call(Man)
+function Man (name, gen) {
+  Person.call(this, gen);
   this.name = name;
 }
 
-const man = Object.create(Person.prototype);
+Man.prototype = Object.create(Person.prototype);
 
-console.log(man, man.isHuman());
+const mySelf = new Man("Daniel", "Male");
+
+console.log(mySelf);
+
+
+const Animal = function (type) {
+  this.type = type
+}
+
+Animal.prototype.move = function () {
+  return `${this.name} is moving`
+}
+
+const dog = new Animal();
+dog.name = "Rookie";
+
+console.log(dog.move());
+
+Object.prototype.lookUp = function (prototype) {
+  // Have a baseline
+  if (Object.getPrototypeOf(this) === null) {
+    return Object.getPrototypeOf(this);
+  }
+
+  if (prototype.isPrototypeOf(this)) {
+    return prototype;
+  }
+
+  return Object.getPrototypeOf(this).lookUp(prototype);
+}
+
+const Cats = function () {}
+
+Object.setPrototypeOf(Cats.prototype, Animal.prototype);
+
+const Flufikin = function () {}
+
+Object.setPrototypeOf(Flufikin.prototype, Cats.prototype);
+
+const kinpy = new Flufikin();
+
+console.log(kinpy.lookUp(Animal));
