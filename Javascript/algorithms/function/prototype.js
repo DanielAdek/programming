@@ -40,27 +40,26 @@ dog.name = "Rookie";
 
 console.log(dog.move());
 
-Object.prototype.lookUp = function (prototype) {
-  // Have a baseline
+Object.prototype.lookUpPrototype = function (prototype) {
   if (Object.getPrototypeOf(this) === null) {
-    return Object.getPrototypeOf(this);
+    return false;
   }
 
   if (prototype.isPrototypeOf(this)) {
     return prototype;
   }
 
-  return Object.getPrototypeOf(this).lookUp(prototype);
+  return Object.getPrototypeOf(this).lookUpPrototype(prototype);
 }
 
 const Cats = function () {}
 
 Object.setPrototypeOf(Cats.prototype, Animal.prototype);
 
-const Flufikin = function () {}
+const Munch = function () {}
 
-Object.setPrototypeOf(Flufikin.prototype, Cats.prototype);
+Object.setPrototypeOf(Munch.prototype, Cats.prototype);
 
-const kinpy = new Flufikin();
+const pippy = new Munch();
 
-console.log(kinpy.lookUp(Animal));
+console.log(pippy.lookUpPrototype(Munch.prototype));
