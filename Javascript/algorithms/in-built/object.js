@@ -192,3 +192,42 @@ Object.prototype.groupBy = function (arr, property) {
 const grouped = Object.groupBy(inventory, "type");
 
 console.log(grouped);
+
+
+const nestedObject = new Object();
+
+nestedObject.human = {
+  man: {
+    name: "Branden",
+    occupation: {
+      organization: {
+        name: "ECMAScript"
+      },
+      job: {
+        title: "Software Engineer",
+        salary: 200000
+      }
+    },
+    size: {
+      height: "30rem"
+    }
+  }
+}
+
+const traverseObject = (object) => {
+  const propNames = Reflect.ownKeys(object);
+
+  const result = new Object();
+
+  for (const prop of propNames) {
+    const value = object[prop];
+
+    if (value && typeof value === "Object") {
+
+      result[prop] = traverseObject(value);
+    }
+    return result;
+  }
+}
+
+console.log(traverseObject(nestedObject))
