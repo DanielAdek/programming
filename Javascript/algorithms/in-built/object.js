@@ -198,7 +198,7 @@ const nestedObject = new Object();
 
 nestedObject.human = {
   man: {
-    name: "Branden",
+    name: "Brendan",
     occupation: {
       organization: {
         name: "ECMAScript"
@@ -215,19 +215,10 @@ nestedObject.human = {
 }
 
 const traverseObject = (object) => {
-  const propNames = Reflect.ownKeys(object);
 
-  const result = new Object();
-
-  for (const prop of propNames) {
-    const value = object[prop];
-
-    if (value && typeof value === "Object") {
-
-      result[prop] = traverseObject(value);
-    }
-    return result;
-  }
 }
 
-console.log(traverseObject(nestedObject))
+console.log(traverseObject(nestedObject));
+
+
+
