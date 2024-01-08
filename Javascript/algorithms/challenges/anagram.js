@@ -255,7 +255,7 @@ function makingAnagrams(s1, s2) {
   return numberOfDeletion;
 }
 
-console.log(makingAnagrams("absdjkvuahdakejfnfauhdsaavasdlkj", "djfladfhiawasdkjvalskufhafablsdkashlahdfa"))
+// console.log(makingAnagrams("absdjkvuahdakejfnfauhdsaavasdlkj", "djfladfhiawasdkjvalskufhafablsdkashlahdfa"))
 
 /**
  Dothraki are planning an attack to usurp King Robert's throne. King Robert learns of this conspiracy from Raven and
@@ -327,4 +327,31 @@ const twoStrings = (s1, s2) => {
 
 // console.log(twoStrings("abc", "bde"));
 
+/**
+  Given an array of strings strs, group the anagrams together. You can return the answer in any order.
 
+ Example 1:
+ Input: strs = ["eat","tea","tan","ate","nat","bat"]
+ Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+
+ Example 2:
+ Input: strs = [""]
+ Output: [[""]]
+ */
+const groupAnagrams = (strings) => {
+  const anagramGroups = new Map();
+
+  for (const str of strings) {
+    const sortedStr = str.split('').sort().join('');
+
+    if (!anagramGroups.has(sortedStr)) {
+      anagramGroups.set(sortedStr, []);
+    }
+
+    anagramGroups.get(sortedStr).push(str);
+  }
+
+  return Array.from(anagramGroups.values());
+}
+
+console.log(groupAnagrams(["eat","tea","tan","ate","nat","bat"]));
