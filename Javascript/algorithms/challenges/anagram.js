@@ -20,14 +20,14 @@ const setObjectValues = (word) => {
   return strToObject;
 };
 
-console.log(anagramFirstSolution("kaka", "akak"))
+// console.log(anagramFirstSolution("kaka", "akak"))
 
 
 const anagramSecondSolution = (stringA, stringB) => cleanString(stringA) === cleanString(stringB);
 
 const cleanString = (str) => str.replace(/\[^a-zA-Z0-9]+/g, '').toLowerCase().split("").sort().join("");
 
-console.log(anagramSecondSolution("dog", "god"))
+// console.log(anagramSecondSolution("dog", "god"))
 
 
 // ************************* ANAGRAM CHALLENGE FROM HACKER RANK *********************************** //
@@ -119,22 +119,50 @@ function anagram(s) {
 
   for (let i=0; i < midPoint; i++) {
     freq[first.charCodeAt(i) - 97]++; // 97 is same as 'a'.charCodeAt(0)
-    freq[second.charCodeAt(i) - 97]--;
+    freq[second.charCodeAt(i) - 'a'.charCodeAt(0)]--; // 'a'.charCodeAt(0) is same as 97
   }
 
   // Calculate the minimum number of changes needed
-  const changesNeeded = freq.reduce((acc, curr) => acc + Math.abs(curr), 0)
+  const changesNeeded = (freq.reduce((acc, curr) => acc + Math.abs(curr), 0)) / 2;
 
-  return changesNeeded / 2;
+  return changesNeeded;
 }
 
-console.log(anagram("6"))
-console.log(anagram("aaabbb"))
-console.log(anagram("ab"))
-console.log(anagram("abc"))
-console.log(anagram("mnop"))
-console.log(anagram("xyyx"))
-console.log(anagram("xaxb bbxx?@!111"))
+// ALTERNATIVE SOLN TO THE ABOVE
+const anagrams = (s) => {
+  const letters = s.replace(/[^a-zA-Z]+/g, "").toLowerCase();
+  const mid = Math.floor(letters.length / 2);
+
+  const left = letters.slice(0, mid);
+  const right = letters.slice(mid);
+
+  if (s.length % 2 !== 0) {
+    return -1;
+  }
+
+  const leftHashMap = new Map();
+
+  let countChangesRequired = 0;
+
+  for (const char of left) {
+    leftHashMap.set(char, (leftHashMap.get(char) || 0) + 1);
+  }
+
+  for (const char of right) {
+    if (!leftHashMap.has(char) || leftHashMap.get(char) === 0) {
+      countChangesRequired++;
+    } else {
+      leftHashMap.set(char, leftHashMap.get(char) - 1);
+    }
+  }
+
+  return countChangesRequired;
+}
+
+// console.log(anagrams("xbcbbx"))
+// console.log(anagrams("csgokgibmftzeozyadcofpouaerckbbpwhdg"))
+// console.log(anagrams("njdtcezqezsjbgotwjtacwngzecihkxvtaqxepnkqiusoklnvepyceebiijqsinnkfkpu"))
+// console.log(anagrams("bkhxeyirnfycfchjeptphnawckbmbxodkxcoxkiksinxkwjqncgxqgtusxhuuxxeuzvsmfegntdxpmofrwcjexd"))
 
 
 /**
@@ -175,7 +203,7 @@ console.log(anagram("xaxb bbxx?@!111"))
  * The second line contains a single string,
  */
 
-function makingAnagrams(s1, s2) {
+function makingAnagram(s1, s2) {
   const freq = new Array(26).fill(0);
 
   for (let i=0; i < s1.length; i++) {
@@ -189,6 +217,42 @@ function makingAnagrams(s1, s2) {
   const deletionNeeded = freq.reduce((acc, curr) => acc + Math.abs(curr), 0)
 
   return deletionNeeded;
+}
+
+
+
+function makingAnagrams(s1, s2) {
+  const first = s1.replace(/\W/g, "").toLowerCase();
+  const second = s2.replace(/[^a-zA-Z]+/g, "").toLowerCase();
+
+  const freq1 = new Map();
+  const freq2 = new Map();
+
+  for (const char of first) {
+    freq1.set(char, (freq1.get(char) || 0) + 1);
+  }
+
+  for (const char of second) {
+    freq2.set(char, (freq2.get(char) || 0) + 1);
+  }
+
+  let numberOfDeletion = 0;
+
+  for (const char of freq2.keys()) {
+    if (freq1.get(char)) {
+      numberOfDeletion += Math.abs(freq1.get(char) - freq2.get(char));
+      freq1.delete(char);
+      freq2.delete(char);
+    } else
+      numberOfDeletion += freq2.get(char);
+  }
+
+  for (const char of freq1.keys()) {
+    numberOfDeletion += freq1.get(char);
+  }
+
+
+  return numberOfDeletion;
 }
 
 console.log(makingAnagrams("absdjkvuahdakejfnfauhdsaavasdlkj", "djfladfhiawasdkjvalskufhafablsdkashlahdfa"))
@@ -230,4 +294,37 @@ const gameOfThrones = (s) => {
   return "NO";
 }
 
-console.log(gameOfThrones("cdcdcdcdeeeef"))
+// console.log(gameOfThrones("cdcdcdcdeeeef"))
+
+
+/**
+Given two strings, determine if they share a common substring.
+ A substring may be as small as one character.
+Example
+These share the common substring
+These do not share a substring.
+Function Description
+Complete the function twoStrings in the editor below.
+twoStrings has the following parameter(s):
+ string s1: a string
+ string s2: another string
+Returns
+ string: either YES or NO
+ */
+const twoStrings = (s1, s2) => {
+  const freq = new Map();
+
+  for (const char of s1) {
+    freq.set(char, (freq.get(char) || 0) + 1);
+  }
+
+  for (const char of s2) {
+    if (freq.get(char)) return "YES";
+  }
+
+  return "NO";
+}
+
+// console.log(twoStrings("abc", "bde"));
+
+
