@@ -23,11 +23,94 @@ const setObjectValues = (word) => {
 // console.log(anagramFirstSolution("kaka", "akak"))
 
 
+// ******************* quickest soln ************************* //
 const anagramSecondSolution = (stringA, stringB) => cleanString(stringA) === cleanString(stringB);
 
 const cleanString = (str) => str.replace(/\[^a-zA-Z0-9]+/g, '').toLowerCase().split("").sort().join("");
 
 // console.log(anagramSecondSolution("dog", "god"))
+
+
+//***************************** LEETCODE CHALLENGE ********************************************//
+
+/**
+ Given two strings determine if they are anagram of each other
+
+ test case 1:
+  input s = anagram, t=nagaram
+ expected output true
+
+ test case 2:
+ input s=rat, t=car
+ expected output false
+ */
+function isAnagram(s, t) {
+  s = s.replace(/\[^a-zA-Z]+/g, "").toLowerCase();
+  t = t.replace(/\W/g, "").toLowerCase();
+
+  if (s.length !== t.length) return false;
+
+  const charCounter = new Map();
+
+  for (const char of s) {
+    charCounter.set(char, (charCounter.get(char) || 0) + 1);
+  }
+
+  for (const char of t) {
+    charCounter.set(char, (charCounter.get(char) || 0) - 1);
+  }
+
+  const valuesLeft= Array.from(charCounter.values());
+
+  const checkLeftOver = valuesLeft.filter(v => v > 0).length;
+
+  if (checkLeftOver) return false;
+
+  return true;
+};
+
+// console.log(isAnagram("anagram", "nagaram"));
+// console.log(isAnagram("rat", "car"));
+
+
+/**
+ Given an array of strings strs, group the anagrams together. You can return the answer in any order.
+ An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase,
+ typically using all the original letters exactly once.
+
+ Example 1:
+
+ Input: strs = ["eat","tea","tan","ate","nat","bat"]
+ Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+
+ Example 2:
+
+ Input: strs = [""]
+ Output: [[""]]
+
+ Example 3:
+
+ Input: strs = ["a"]
+ Output: [["a"]]
+ */
+const groupAnagrams = (strings) => {
+  const anagramGroups = new Map();
+
+  for (const word of strings) {
+    const sorted = word.split("").sort().join("");
+
+    if (!anagramGroups.has(sorted)) {
+      anagramGroups.set(sorted, [])
+    }
+
+    anagramGroups.get(sorted).push(word);
+  }
+
+  return Array.from(anagramGroups.values());
+}
+
+// console.log(groupAnagrams(["eat","tea","tan","ate","nat","bat"]));
+
 
 
 // ************************* ANAGRAM CHALLENGE FROM HACKER RANK *********************************** //
@@ -202,7 +285,6 @@ const anagrams = (s) => {
  * .
  * The second line contains a single string,
  */
-
 function makingAnagram(s1, s2) {
   const freq = new Array(26).fill(0);
 
@@ -326,32 +408,3 @@ const twoStrings = (s1, s2) => {
 }
 
 // console.log(twoStrings("abc", "bde"));
-
-/**
-  Given an array of strings strs, group the anagrams together. You can return the answer in any order.
-
- Example 1:
- Input: strs = ["eat","tea","tan","ate","nat","bat"]
- Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
-
- Example 2:
- Input: strs = [""]
- Output: [[""]]
- */
-const groupAnagrams = (strings) => {
-  const anagramGroups = new Map();
-
-  for (const str of strings) {
-    const sortedStr = str.split('').sort().join('');
-
-    if (!anagramGroups.has(sortedStr)) {
-      anagramGroups.set(sortedStr, []);
-    }
-
-    anagramGroups.get(sortedStr).push(str);
-  }
-
-  return Array.from(anagramGroups.values());
-}
-
-console.log(groupAnagrams(["eat","tea","tan","ate","nat","bat"]));

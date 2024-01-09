@@ -8,27 +8,17 @@
  */
 
 // solution
-function compressString(input) {
-  if (input.length === 0) {
-    return "";
-  }
-
+function compressString(str) {
   let compressed = "";
-  let currentChar = input[0];
-  let count = 0;
-
-  for (let i = 0; i < input.split("").length; i++) {
-    if (input[i] === currentChar) {
+  let count = 1;
+  for (let i=0; i < str.length; i++) {
+    if (str[i] === str[i + 1]) {
       count++;
     } else {
-      compressed += currentChar + (count > 1 ? count : "");
-      currentChar = input[i];
-      count = 1; // reset count
+      compressed += str[i] + (count > 1 ? count : "");
+      count = 1;
     }
   }
-
-  compressed += currentChar + (count > 1 ? count : "");
-
   return compressed;
 }
 console.log(compressString("zzbaaabk"))
