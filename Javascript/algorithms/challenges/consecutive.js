@@ -11,11 +11,14 @@
 function compressString(str) {
   let compressed = "";
   let count = 1;
-  for (let i=0; i < str.length; i++) {
-    if (str[i] === str[i + 1]) {
+  for (let i = 0; i < str.length; i++) {
+    const current = str[i];
+    const next = str[i + 1];
+
+    if (current === next) {
       count++;
     } else {
-      compressed += str[i] + (count > 1 ? count : "");
+      compressed += current + (count > 1 ? count : "");
       count = 1;
     }
   }
