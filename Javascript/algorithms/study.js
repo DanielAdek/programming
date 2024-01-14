@@ -115,3 +115,21 @@ const anagrams = (str, string) => {
 }
 
 console.log(anagrams("Fairy tale!!", "Tale fairy!"));
+
+
+function countUniqueValues(sortedArr){
+  // add whatever parameters you deem necessary - good luck!
+  let i = 0;
+  for (let j= 1; j < sortedArr.length; j++) {
+    if (sortedArr[i] !== sortedArr[j]) {
+      i++;
+      sortedArr[i] = sortedArr[j]
+    }
+  }
+
+  sortedArr.length = i + 1;
+
+  return sortedArr.length;
+}
+
+console.log(countUniqueValues([1, 1, 2, 3, 4, 4, 5]))

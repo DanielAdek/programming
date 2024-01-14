@@ -6,8 +6,6 @@
  * Input "aaaabbb" returns  "a4b3".
  * Input of “zzbaaabk” returns “z2ba3bk
  */
-
-// solution
 function compressString(str) {
   let compressed = "";
   let count = 1;

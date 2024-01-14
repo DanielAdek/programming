@@ -29,7 +29,6 @@ const memoization = (fn) => {
 
     cache.set(key, result);
 
-    console.log(cache)
     return result;
   }
 }

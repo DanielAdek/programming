@@ -56,13 +56,31 @@ function check_Palindrome(str_entry){
     }
     console.log("The entry is a palindrome.");
     return true;
+}
+check_Palindrome('madam');
+check_Palindrome('nursesrun');
+check_Palindrome('fox');
+
+
+// using two pointer to solve;
+function isPalindrome(s) {
+  const alphaNum = s.replace(/[^a-zA-Z0-9]+/g, "").toLowerCase();
+
+  let leftIteration = 0;
+  let rightIteration = alphaNum.length - 1;
+
+  for (const char of alphaNum) {
+    if (alphaNum[leftIteration] !== alphaNum[rightIteration]) {
+      return false;
+    }
+    leftIteration++;
+    rightIteration--;
   }
-  check_Palindrome('madam');
-  check_Palindrome('nursesrun');
-  check_Palindrome('fox');
+
+  return true;
+};
+
+console.log(isPalindrome("A man, a plan, a canal: Panama"))
 
 
-// Write a JavaScript function that generates all combinations of a string.
-// Example string : 'dog'
-// Expected Output : d,do,dog,o,og,g
 
