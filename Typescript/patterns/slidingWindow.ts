@@ -40,8 +40,30 @@ const maxSumSubArray = (arr: number[], n: number): number | null => {
     maxSum += arr[i];
   }
 
-  for (let i: number = 0; i < arr.length; i++) {
-
+  for (let i: number = n; i < arr.length; i++) {
+    maxSum = maxSum - arr[i - n] + arr[i];
   }
-  return;
+
+
+  return maxSum;
+}
+
+console.log(maxSumSubArray([1, 1, 3, 2, 4], 2))
+
+function minSubarrayLength(target: number, nums: number[]): number {
+  let left: number = 0;
+  let currentSum: number = 0;
+  let minLength: number = Infinity;
+
+  for (let right = 0; right < nums.length; right++) {
+    currentSum += nums[right];
+
+    while (currentSum >= target) {
+      minLength = Math.min(minLength, right - left + 1);
+      currentSum -= nums[left];
+      left++;
+    }
+  }
+
+  return minLength !== Infinity ? minLength : 0;
 }

@@ -4,6 +4,7 @@ import com.practice.algorithms.EscapeGivenChars;
 import com.practice.algorithms.Fibbonacci;
 import com.practice.algorithms.FizzBuzz;
 import com.practice.algorithms.ReversedString;
+import com.practice.learn.Learn;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,5 +39,11 @@ public class MainApplication {
 
     EscapeGivenChars escapeGivenChars = new EscapeGivenChars();
     escapeGivenChars.solve("ThQuicBigBrownFoJumpOverTheLazyDog", "The1Quick#BigBrownFox&JumpOverTheLazyDog", new char[]{'1', '&', '#'});
+
+    Learn learn = new Learn(33);
+
+    int userAge = learn.getUserAge();
+
+    System.out.println(userAge);
   }
 }

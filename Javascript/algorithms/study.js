@@ -28,108 +28,30 @@
 //
 // step(4)
 
+const obj = { name: "Dan"};
 
+const weakMap = new WeakMap();
 
-// function areAnagrams(word1, word2) {
-//   return word1.split("").sort().join("") === word2.split("").sort().join("");
-// }
+weakMap.set(obj, "{ name: obj }");
 
+console.log(weakMap);
 
-// function funWithAnagrams(text) {
-//   const nonAnagrams = [];
-//
-//   for (let i = 1; i < text.length; i++) {
-//
-//     for (let j=0; j < text.length; j++) {
-//       if ((text[i].split("").sort().join("") !== text[j].split("").sort().join(""))) {
-//         nonAnagrams.push(text[i])
-//       }
-//     }
-//
-//     if (!nonAnagrams.length) {
-//       nonAnagrams.push(text[0])
-//     }
-//
-//     return nonAnagrams;
-//   }
-//
-// }
-// const text = ["poke", "pkoe", "okpe", "ekop"];
-// console.log(funWithAnagrams(text));
+function minSubarrayLength(target, nums) {
+  let left = 0;
+  let currentSum = 0;
+  let minLength = Infinity;
 
+  for (let right = 0; right < nums.length; right  ++) {
+    currentSum += nums[right];
 
-const anagrams = (str, string) => {
-  const onlyWord = str.replace(/\W/g, "").toLowerCase();
-  const onlyWrd = string.replace(/[^a-zA-Z0-9]+/g, "").toLowerCase();
-
-//   if (onlyWord.length != onlyWrd.length) return false;
-//
-//   const frqWord = {};
-//   const frqWrd = {};
-//
-//   for (const w of onlyWord) {
-//     frqWord[w] = (frqWord[w] || 0) + 1;
-//   }
-//
-//   for (const w of onlyWrd) {
-//     frqWrd[w] = (frqWrd[w] || 0) + 1;
-//   }
-//
-//   for (const w in frqWord) {
-//     // check if a key in one is missing in the other
-//     if (!(w in frqWrd)) return false;
-//
-//     if (frqWord[w] !== frqWrd[w]) return false;
-//   }
-
-
-   // if (onlyWord.length !== onlyWrd.length) return false;
-   //
-   // const freqCounter = {};
-   //
-   // for (const l of onlyWord) {
-   //   freqCounter[l] = (freqCounter[l] || 0) + 1;
-   // }
-   //
-   // for (const l of onlyWrd) {
-   //   if (!freqCounter[l]) return false;
-   //   else freqCounter[l] -= 1;
-   // }
-
-  if (onlyWord.length !== onlyWrd.length) return false;
-
-  const freqCounter = new Map();
-
-  for (const w of onlyWord) {
-    freqCounter.set(w, (freqCounter.get(w) || 0) + 1);
-  }
-
-  for (const w of onlyWrd) {
-    if (!freqCounter.get(w)) return false;
-    else {
-      freqCounter.set(w, freqCounter.get(w) - 1);
+    while (currentSum >= target) {
+      minLength = Math.min(minLength, right - left + 1);
+      currentSum -= nums[left];
+      left++;
     }
   }
 
-  return true;
+  return minLength !== Infinity ? minLength : 0;
 }
 
-console.log(anagrams("Fairy tale!!", "Tale fairy!"));
-
-
-function countUniqueValues(sortedArr){
-  // add whatever parameters you deem necessary - good luck!
-  let i = 0;
-  for (let j= 1; j < sortedArr.length; j++) {
-    if (sortedArr[i] !== sortedArr[j]) {
-      i++;
-      sortedArr[i] = sortedArr[j]
-    }
-  }
-
-  sortedArr.length = i + 1;
-
-  return sortedArr.length;
-}
-
-console.log(countUniqueValues([1, 1, 2, 3, 4, 4, 5]))
+console.log(minSubarrayLength(7,[2,3,1,2,4,3]))
