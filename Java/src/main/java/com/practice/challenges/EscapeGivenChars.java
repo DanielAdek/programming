@@ -1,4 +1,4 @@
-package com.practice.algorithms;
+package com.practice.challenges;
 
 public class EscapeGivenChars {
   public boolean solve(String param1, String param2, char[] excapeChars) {

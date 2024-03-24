@@ -7,8 +7,6 @@ bool isPalindrome(String word) {
 
   word = word.replaceAll(regex, '').toLowerCase();
 
-  print(word); // here it printed aka
-
   int left = 0;
   int right = word.length - 1;
 

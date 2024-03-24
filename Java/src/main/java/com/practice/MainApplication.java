@@ -1,9 +1,9 @@
 package com.practice;
 
-import com.practice.algorithms.EscapeGivenChars;
-import com.practice.algorithms.Fibbonacci;
-import com.practice.algorithms.FizzBuzz;
-import com.practice.algorithms.ReversedString;
+import com.practice.challenges.EscapeGivenChars;
+import com.practice.challenges.Fibbonacci;
+import com.practice.challenges.FizzBuzz;
+import com.practice.challenges.ReversedString;
 import com.practice.learn.Learn;
 
 import java.util.HashMap;

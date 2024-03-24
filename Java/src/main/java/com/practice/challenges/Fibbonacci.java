@@ -1,4 +1,4 @@
-package com.practice.algorithms;
+package com.practice.challenges;
 
 public class Fibbonacci {
 

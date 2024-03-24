@@ -1,4 +1,4 @@
-package com.practice.algorithms;
+package com.practice.challenges;
 
 import java.util.HashMap;
 import java.util.Map;
