@@ -129,6 +129,8 @@ const indexOfTwoSum = (numbers: number[], target: number): Array<number> => {
   let leftPointer: number = 0;
   let rightPointer: number = numbers.length - 1;
 
+  numbers = numbers.sort((a, b) => a - b);
+  
   while (leftPointer < rightPointer) {
     const calcSum: number = numbers[leftPointer] + numbers[rightPointer];
 
