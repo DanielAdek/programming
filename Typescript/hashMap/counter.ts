@@ -4,8 +4,12 @@
     Given an array of numbers, count the frequency of each number.
  */
 
-const frequencyCounter = (arr: number[]): { [key: number]: number } => {
-  const frequencyCounter: { [key: number]: number } = {};
-  
-  return frequencyCounter;
+export const frequencyCounter = (arr: number[]): Map<number, number> => {
+  const freqCounter: Map<number, number> = new Map<number, number>();
+
+  for (let i = 0; i < arr.length; i++) {
+    freqCounter.set(arr[i], (freqCounter.get(arr[i])! + 1) || 1);
+  }
+
+  return freqCounter;
 }

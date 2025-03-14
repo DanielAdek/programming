@@ -20,7 +20,7 @@ Output: [0,1]
  */
 
 export function twoSum(numbs: number[], target: number): number[] {
-  const hashMap = new Map<number, number>();
+  const hashMap: Map<number, number> = new Map<number, number>();
 
   for (let i = 0; i < numbs.length; i++) {
     const diff = target - numbs[i];
