@@ -28,3 +28,16 @@ console.log("=============== intersection ==================")
 console.log(hashTable.interception([1, 2, 2, 1], [2, 2]));
 console.log(hashTable.interception([4, 9, 5], [9, 4, 9, 8, 4]));
 console.log(hashTable.interception([4, 9, 5, 6, 6, 7, 0, 0, 1, 3, 5, 2, 7, 6, 9, 8], [9, 4, 9, 8, 4]));
+
+console.log("=============== prefix sum ==================")
+console.log(hashTable.prefixSum([1, 2, 2, 1]));
+console.log(hashTable.prefixSum([9, 4, 9, 8, 4]));
+console.log(hashTable.prefixSum([4, 9, 5, 6, 6, 7, 0, 0, 1, 3, 5, 2, 7, 6, 9, 8]));
+
+console.log("=============== prefix sum II ==================")
+console.log(JSON.stringify(hashTable.prefixSumII([1, 2, 3]), null, 2));
+
+console.log("=============== sub array sum ==================")
+console.log(hashTable.subArraySum([1, 1, 1], 2));
+console.log(hashTable.subArraySumSolnII([3, 4, 7, 2, -3, 1, 4, 2], 7));
+console.log(hashTable.maxSumSubArray([2, 1, 5, 1, 3, 2, 4, 3, 4, 5], 3));

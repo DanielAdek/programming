@@ -12,16 +12,15 @@ Example 2:
 Input: numbs1 = [4, 9, 5], numbs2 = [9, 4, 9, 8, 4]
 Output: [4, 9]
 Explanation: Both `4` and `9` appear in both arrays.
-
 */
 
 export const interception = (numbs1: number[], numbs2: number[]): number[] => {
-  const set1 = new Set(numbs1);
-  const resultSet = new Set<number>();
+  const set1: Set<number> = new Set<number>(numbs1);
+  const resultSet: Set<number> = new Set<number>();
 
   for (const numb of numbs2) {
     if (set1.has(numb)) {
-        resultSet.add(numb);
+      resultSet.add(numb);
     }
   }
 

@@ -8,7 +8,7 @@ export const frequencyCounter = (arr: number[]): Map<number, number> => {
   const freqCounter: Map<number, number> = new Map<number, number>();
 
   for (let i = 0; i < arr.length; i++) {
-    freqCounter.set(arr[i], (freqCounter.get(arr[i])! + 1) || 1);
+    freqCounter.set(arr[i], (freqCounter.get(arr[i])! || 0) + 1);
   }
 
   return freqCounter;
